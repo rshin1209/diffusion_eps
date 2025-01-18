@@ -1,11 +1,11 @@
 # converters/xyz2bat.py
 
 import os
+import logging
 import numpy as np
 import networkx as nx
-import logging
-from pathlib import Path
 import mdtraj as md
+from pathlib import Path
 from typing import List, Tuple
 
 class XYZ2BATconverter:
@@ -93,8 +93,8 @@ class XYZ2BATconverter:
         Args:
             output_dir (Path): Directory containing generated XYZ files.
             ts (str): Transition state PDB file name.
-            atom1 (int): First atom number in bond 1.
-            atom2 (int): Second atom number in bond 1.
+            atom1 (int): First atom number in reacting bond.
+            atom2 (int): Second atom number in reacting bond.
         """
         trajectory = md.load_xyz(output_dir / "snapshot.xyz", top=ts)
         self.topology.insert(0, (atom1 - 1, atom2 - 1))  # Add reacting bond to topology
