@@ -6,6 +6,8 @@ import joblib
 import math
 import argparse
 import numpy as np
+import logging
+from typing import List, Tuple, Any
 from pathlib import Path
 from torch.utils.data import DataLoader
 from data.data import ReactionDynamicsDataset
@@ -122,7 +124,7 @@ def main(args: argparse.Namespace) -> None:
         raise FileNotFoundError(f"Data file not found at {data_np_path}")
 
     all_data = np.load(data_np_path).astype(np.float32)
-
+    
     if args.train:
         logging.info("Starting training of the diffusion model.")
         epochs = 2000 // args.num_traj
@@ -137,7 +139,7 @@ def main(args: argparse.Namespace) -> None:
         logging.info(f"Loaded model from {model_path}")
         num_samples = 6000 // args.num_traj
         model.diverse(all_data=all_data, num_samples=num_samples)
-
+    
     # Convert XYZ to BAT format
     ts_pdb_path = Path(f"./dataset/{args.ts}.pdb")
     if not ts_pdb_path.exists():
