@@ -9,7 +9,6 @@ import numpy as np
 import matplotlib.pyplot as plt
 from typing import List, Tuple
 from pathlib import Path
-from utils.shared_memory import create_shared_memory, access_shared_memory
 
 class SinusoidalPositionalEncoding(nn.Module):
     """
