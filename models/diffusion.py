@@ -1,13 +1,14 @@
 # models/diffusion.py
 
 import math
+import logging
 import torch
 import torch.nn as nn
 import torch.optim as optim
 import numpy as np
 import matplotlib.pyplot as plt
-from typing import List
-
+from typing import List, Tuple
+from pathlib import Path
 from utils.shared_memory import create_shared_memory, access_shared_memory
 
 class SinusoidalPositionalEncoding(nn.Module):
@@ -65,7 +66,7 @@ class MLP(nn.Module):
         self.gelu = nn.GELU()
 
         # Initialize weights
-        self._initialize_weights()
+        #self._initialize_weights()
 
     def _initialize_weights(self) -> None:
         """
@@ -311,7 +312,6 @@ class Diffusion:
 
         # Normalize the data
         all_data_tensor = torch.from_numpy(all_data).float().to(self.device)
-        all_data_tensor = torch.from_numpy(self.scaler.transform(all_data)).float().to(self.device)
 
         with torch.no_grad():
             for _ in range(num_samples):
@@ -330,15 +330,15 @@ class Diffusion:
                     alpha_bar_t = self.alpha_bar[step]
 
                     if step > 0:
-                        alpha_bar_prev = self.alpha_bar[step - 1]
+                        alpha_bar_t_prev = self.alpha_bar[step - 1]
                     else:
-                        alpha_bar_prev = torch.tensor(1.0, device=self.device)
+                        alpha_bar_t_prev = torch.tensor(1.0, device=self.device)
 
                     # Compute mean
                     mean = (1 / torch.sqrt(alpha_t)) * (x - (beta_t / torch.sqrt(1 - alpha_bar_t)) * predicted_noise)
 
                     # Compute variance
-                    beta_tilde = beta_t * ((1 - alpha_bar_prev) / (1 - alpha_bar_t))
+                    beta_tilde = beta_t * ((1 - alpha_bar_t_prev) / (1 - alpha_bar_t))
 
                     # Sample from Gaussian
                     if step > 0:
