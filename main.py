@@ -96,13 +96,13 @@ def main(args: argparse.Namespace) -> None:
     Args:
         args (argparse.Namespace): Parsed command-line arguments.
     """
-    # Setup logging
-    log_file = Path(args.output_dir) / "execution.log" if args.output_dir else None
-    setup_logging(log_level=args.log_level, log_file=log_file)
-
     # Create output directory
     output_dir = Path(f"./output/{args.reaction}")
     output_dir.mkdir(parents=True, exist_ok=True)
+
+    # Setup logging
+    log_file = Path(args.output_dir) / "execution.log" if args.output_dir else None
+    setup_logging(log_level=args.log_level, log_file=log_file)
     logging.info(f"Output directory set to: {output_dir}")
 
     # Load dataset
