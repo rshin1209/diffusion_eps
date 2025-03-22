@@ -154,7 +154,7 @@ class EntropyProcessor:
             for i, line in enumerate(dof_lines):
                 tokens = line.split()
                 atoms_in_dof = list(map(int, tokens))
-                if all(atom in self.allowed_atoms for atom in atoms_in_dof):
+                if any(atom in self.allowed_atoms for atom in atoms_in_dof):
                     kept_indices.append(i)
                     dof_type = self.classify_dof(tokens)
                     kept_dof_types.append(dof_type)
@@ -225,6 +225,8 @@ class EntropyProcessor:
             # Load MI matrix
             try:
                 em_matrix = np.load(em_file)
+                if self.allowed_atoms:
+                    em_matrix = em_matrix[np.ix_(self.kept_indices, self.kept_indices)]
             except Exception as e:
                 logging.error(f"Failed to load {filename}: {e}. Skipping.")
                 continue
