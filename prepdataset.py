@@ -5,10 +5,6 @@ import mdtraj as md
 from sklearn.preprocessing import StandardScaler
 import joblib
 
-def calculate_bond(coord_x, coord_y):
-    """Calculate the Euclidean distance between two 3D coordinates."""
-    return np.linalg.norm(np.array(coord_x, dtype=float) - np.array(coord_y, dtype=float))
-
 def parse_snapshots(reaction_dir, runpoint_threshold=1):
     """Parse XYZ trajectory files and collect snapshots where runpoint > threshold after second runpoint = 1 occurrence."""
     snapshot_data = []
