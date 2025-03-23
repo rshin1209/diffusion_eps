@@ -3,15 +3,15 @@
 Post-transition-state bifurcation (PTSB) is a phenomenon where a single transition state (TS) can lead to the formation of multiple products. Understanding the mechanisms underlying PTSB requires a comprehensive analysis of both post-TS energy and entropy profiles for each bifurcating product. In previous work, we developed an [accelerated entropic path sampling (EPS)](https://pubs.acs.org/doi/10.1021/acs.jpcb.3c01202) approach using a bidirectional generative adversarial network (BGAN) model, which allowed for entropy evaluation with 100–200 reaction trajectories per product. However, as ambimodal selectivity becomes more skewed, the method’s effectiveness decreases. Collecting over 100 trajectories for the minor product becomes computationally expensive, and with fewer trajectories, the BGAN model’s ability to accurately generate molecular configurations diminishes, leading to incomplete entropy convergence. To address these limitations, we applied a Denoising Probabilistic Diffusion Model to generate molecular structures and corresponding energies that are statistically indistinguishable from those sampled during reaction dynamics simulations. With limited datasets, diffusion models offer more stable training, better mode coverage, and higher-quality synthetic data generation than adversarial neural networks, enabling more robust sampling of molecular structures. Crucially, this approach requires only 100–200 trajectories in total, covering both major and minor product pathways, thereby significantly reducing computational costs. Using asymmetric PTSB reactions as a case study, we demonstrate how this model enhances the efficiency of entropic path sampling and enables effective energy and entropy analysis.
 
 ## requirement.txt
-numpy
-scipy
-torch
-matplotlib
-networkx
-mdtraj
-joblib
-tqdm
-scikit-learn
+        numpy
+        scipy
+        torch
+        matplotlib
+        networkx
+        mdtraj
+        joblib
+        tqdm
+        scikit-learn
 
 ## How to perform Diffusion-EPS
 
@@ -29,7 +29,7 @@ The diene/triene cycloaddition is an ambimodal pericyclic reaction involving but
 ## The overview of Diffusion-EPS
 
 <p align="center">
-<img src="https://github.com/rshin1209/bgan_eps/assets/25111091/c1b2280b-3ce6-4437-8699-7db437239b6b" width=100%>
+<img src="https://github.com/user-attachments/assets/55995b3a-0d4d-4308-ba7a-b8ee06864691" width=100%>
 </p>
 
 ### Step 1: Dataset Preparation
@@ -101,6 +101,8 @@ Please open an issue on GitHub or contact wook.shin@vanderbilt.edu if you encoun
 
 ## Citation
 Shin, W.; Ran, X.; Yang, Z. J. Accelerated Entropic Path Sampling with a Bidirectional Generative Adversarial Network. The Journal of Physical Chemistry B 2023, 127 (19), 4254-4260. DOI: 10.1021/acs.jpcb.3c01202.
+Wook Shin, Yaning Hou, Xin Wang*, and Zhongyue J. Yang*. Interplay between Energy and Entropy Mediates Ambimodal Selectivity of Cycloadditions.” J. Chem. Theory Comput. 2024, 20, 24, 10942–10951.
+
 
 ## License
 This project is licensed under the MIT License - see the LICENSE file for details.
