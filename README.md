@@ -31,6 +31,7 @@ The diene/triene cycloaddition is an ambimodal pericyclic reaction involving but
 <p align="center">
 <img src="https://github.com/user-attachments/assets/55995b3a-0d4d-4308-ba7a-b8ee06864691" width=100%>
 </p>
+
 **Figure 1.** The overview of Diffusion-EPS
 
 ### Step 1: Dataset Preparation
@@ -45,7 +46,7 @@ Files to prepare:
 2. Optimized TS structure file in pdb format (e.g., ./trajectory/dta_r2p_TS.pdb).
 
 #### Step 1.2: Dataset Scaling and Preparation
-prepdataset.py extracts transition-state structure aligned cartesian coordinates of structures and corresponding energies for each snapsho. Then, it uses sklearn.preprocessing.StandardScaler to scale each column of dataset for training.
+prepdataset.py extracts transition-state-structure-aligned Cartesian coordinates and corresponding energies for each snapshot. It then uses sklearn.preprocessing.StandardScaler to scale each column of the dataset for training.
 
 reaction_name, tsfile_name, and energy_index must be specified in prepdataset.py.
 
@@ -57,7 +58,7 @@ reaction_name, tsfile_name, and energy_index must be specified in prepdataset.py
         python prepdataset.py
 
 ### Step 2: Diffusion-assisted Configurational Sampling
-main.py performs Diffusion Model training.
+main.py handles the training of the Diffusion Model. 
 
         python main.py --reaction dta_r2p_1 --num_traj 10 --train
         [reaction] -- The name of reaction directory
@@ -67,7 +68,7 @@ main.py performs Diffusion Model training.
 ### Step 3: Entropy Analysis
 #### Step 3.1: Coordinate Conversion
 
-xyz2bat.py converts Cartesian coordinates of generated snapshots into redundant internal coordinates based on bonding connectivity. The resulting internal coordinates are saved in a 2D numpy array (e.g., ./output/dta_r2p_1/dofs.npy) with rows of snapshots and columns of internal coordinates.
+xyz2bat.py converts the Cartesian coordinates of generated snapshots into redundant internal coordinates (bond lengths, bond angles, and torsion angles) based on bonding connectivity. The resulting internal coordinates are stored in a 2D NumPy array (e.g., ./output/dta_r2p_1/dofs.npy), where each row corresponds to a single snapshot and each column represents a specific internal coordinate degree of freedom.
 
         python xyz2bat.py --nb1 1 --nb2 10 --atom1 2 --atom2 5 --reaction dta_r2p_1
         [nb1] -- first atom number in bond 1
@@ -77,7 +78,7 @@ xyz2bat.py converts Cartesian coordinates of generated snapshots into redundant 
         [reaction] -- The name of reaction directory
 
 #### Step 3.2: Entropy Sampling
-entropy_sampler.py computes 1D-entropies of each DoF and Mutual Information (MI) of the pairs of DoFs for each structural window and store as a numpy matrix.
+entropy_sampler.py computes the one-dimensional (1D) configurational entropy for each degree of freedom (DoF) and the mutual information (MI) between every pair of DoFs within each defined structural window. 
 
         python entropy_sampler.py --reaction dta_r2p_1 --bondmax 2.790 --bondmin 1.602 --ensemble 10
         [reaction] -- The name of reaction directory
@@ -86,7 +87,7 @@ entropy_sampler.py computes 1D-entropies of each DoF and Mutual Information (MI)
         [ensemble] -- Number of ensembles to divide the reaction coordinate into.
 
 #### Step 3.3: Entropy Compiling
-entropy_compiler.py computes configurational entropy profiles based on entropy matrices for each structural window sampled in Step 3.2.
+entropy_compiler.py computes the configurational entropy profiles along the reaction coordinate by processing the entropy and mutual information matrices obtained for each structural window in Step 3.2. It aggregates the 1D-entropies and corrects for pairwise correlations using the mutual information terms, generating total configurational entropy values for each window. 
 
         python entropy_sampler.py --reaction dta_r2p_1 --temperature 298.15
         [reaction] -- The name of reaction directory
@@ -96,7 +97,7 @@ entropy_compiler.py computes configurational entropy profiles based on entropy m
 <img src = "https://github.com/user-attachments/assets/7beb9d89-765b-40f3-afa7-e6f2c2121015">
 </p>
 
-**Figure 2.** Benchmark of Diffusion-EPS. The entropy and energy profiles of dta_r2p_1 and dta_r2p_2 were calculated with EPS protocol using 1961 trajectories for each bond formation. Those of dta_r2p_1_gen and dta_r2p_2_gen were calculated with Diffusion-EPS using 100 trajectories for each bond formation.
+**Figure 2.** Benchmark of Diffusion-EPS. The entropy and energy profiles for dta_r2p_1 and dta_r2p_2 were computed using the original Entropic Path Sampling (EPS) protocol, based on 1,961 quasiclassical trajectories for each bond formation pathway. In contrast, the profiles for dta_r2p_1_gen and dta_r2p_2_gen were calculated using the Diffusion-EPS approach. In this case, only 100 trajectories were used for each bond formation pathway, with the diffusion model augmenting the dataset to achieve comparable entropy and energy profile quality. 
 
 ## Contact
 Please open an issue on GitHub or contact wook.shin@vanderbilt.edu if you encounter any issues or have concerns.
