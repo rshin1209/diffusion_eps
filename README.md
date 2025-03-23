@@ -31,7 +31,7 @@ The diene/triene cycloaddition is an ambimodal pericyclic reaction involving but
 <p align="center">
 <img src="https://github.com/user-attachments/assets/55995b3a-0d4d-4308-ba7a-b8ee06864691" width=100%>
 </p>
-Figure 1. The overview of Diffusion-EPS
+**Figure 1.** The overview of Diffusion-EPS
 
 ### Step 1: Dataset Preparation
 #### Step 1.1: Quasiclassical Trajectory Simulation
@@ -96,12 +96,12 @@ entropy_compiler.py computes configurational entropy profiles based on entropy m
 <img src = "https://github.com/user-attachments/assets/7beb9d89-765b-40f3-afa7-e6f2c2121015">
 </p>
 
-**Figure 2. Benchmark of Diffusion-EPS. The entropy and energy profiles of dta_r2p_1 and dta_r2p_2 were calculated with EPS protocol using 1961 trajectories for each bond formation. Those of dta_r2p_1_gen and dta_r2p_2_gen were calculated using Diffusion-EPS.
+**Figure 2.** Benchmark of Diffusion-EPS. The entropy and energy profiles of dta_r2p_1 and dta_r2p_2 were calculated with EPS protocol using 1961 trajectories for each bond formation. Those of dta_r2p_1_gen and dta_r2p_2_gen were calculated using Diffusion-EPS.
 
 ## Contact
 Please open an issue on GitHub or contact wook.shin@vanderbilt.edu if you encounter any issues or have concerns.
 
-## Citation
+## Citations
 Shin, W.; Ran, X.; Yang, Z. J. Accelerated Entropic Path Sampling with a Bidirectional Generative Adversarial Network. The Journal of Physical Chemistry B 2023, 127 (19), 4254-4260. DOI: 10.1021/acs.jpcb.3c01202.
 Wook Shin, Yaning Hou, Xin Wang*, and Zhongyue J. Yang*. Interplay between Energy and Entropy Mediates Ambimodal Selectivity of Cycloadditions.” J. Chem. Theory Comput. 2024, 20, 24, 10942–10951.
 
