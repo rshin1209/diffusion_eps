@@ -103,8 +103,8 @@ entropy_compiler.py computes the configurational entropy profiles along the reac
 Please open an issue on GitHub or contact wook.shin@vanderbilt.edu if you encounter any issues or have concerns.
 
 ## Citations
-Shin, W.; Ran, X.; Yang, Z. J. Accelerated Entropic Path Sampling with a Bidirectional Generative Adversarial Network. The Journal of Physical Chemistry B 2023, 127 (19), 4254-4260. DOI: 10.1021/acs.jpcb.3c01202.
-Wook Shin, Yaning Hou, Xin Wang*, and Zhongyue J. Yang*. Interplay between Energy and Entropy Mediates Ambimodal Selectivity of Cycloadditions.” J. Chem. Theory Comput. 2024, 20, 24, 10942–10951.
+* Shin, W.; Ran, X.; Yang, Z. J. Accelerated Entropic Path Sampling with a Bidirectional Generative Adversarial Network. The Journal of Physical Chemistry B 2023, 127 (19), 4254-4260. DOI: 10.1021/acs.jpcb.3c01202.
+* Wook Shin, Yaning Hou, Xin Wang*, and Zhongyue J. Yang*. Interplay between Energy and Entropy Mediates Ambimodal Selectivity of Cycloadditions.” J. Chem. Theory Comput. 2024, 20, 24, 10942–10951.
 
 
 ## License
