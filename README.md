@@ -1,5 +1,5 @@
 # Diffusion Models for Efficient Energy and Entropy Analysis in Post-Transition-State Bifurcations
-## ACS Spring 2025
+## ACS Spring 2025 Abstract
 Post-transition-state bifurcation (PTSB) is a phenomenon where a single transition state (TS) can lead to the formation of multiple products. Understanding the mechanisms underlying PTSB requires a comprehensive analysis of both post-TS energy and entropy profiles for each bifurcating product. In previous work, we developed an accelerated entropic path sampling (EPS) approach using a bidirectional generative adversarial network (BGAN) model, which allowed for entropy evaluation with 100–200 reaction trajectories per product. However, as ambimodal selectivity becomes more skewed, the method’s effectiveness decreases. Collecting over 100 trajectories for the minor product becomes computationally expensive, and with fewer trajectories, the BGAN model’s ability to accurately generate molecular configurations diminishes, leading to incomplete entropy convergence. To address these limitations, we applied a Denoising Probabilistic Diffusion Model to generate molecular structures and corresponding energies that are statistically indistinguishable from those sampled during reaction dynamics simulations. With limited datasets, diffusion models offer more stable training, better mode coverage, and higher-quality synthetic data generation than adversarial neural networks, enabling more robust sampling of molecular structures. Crucially, this approach requires only 100–200 trajectories in total, covering both major and minor product pathways, thereby significantly reducing computational costs. Using asymmetric PTSB reactions as a case study, we demonstrate how this model enhances the efficiency of entropic path sampling and enables effective energy and entropy analysis.
 
 ## requirement.txt
@@ -53,14 +53,12 @@ Example:
           reaction_name = 'dta_r2p_1'
           tsfile_name = 'dta_r2p_TS.pdb'
           energy_index = -1 # The last item (0-indexed) of 'Progdyn_2017   dynamics   trajectory   diene_triene_cycloaddition   runpoint    50   runisomer    21   E:    -389.299517092'
-          
-To run:
+
         python prepdataset.py
 
 ### Step 2: Diffusion-assisted Configurational Sampling
 main.py performs Diffusion Model training.
 
-To run:
         python main.py --reaction dta_r2p_1 --num_traj 10 --train
         [reaction] -- The name of reaction directory
         [num_traj] -- The number of trajectories sampled from quasiclassical trajectory simulation
