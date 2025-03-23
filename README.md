@@ -93,10 +93,10 @@ entropy_compiler.py computes configurational entropy profiles based on entropy m
         [temperature] -- Temperature in Kelvin.
 
 <p align="center">
-<img src = "https://github.com/user-attachments/assets/7beb9d89-765b-40f3-afa7-e6f2c2121015", width=50%>
+<img src = "https://github.com/user-attachments/assets/7beb9d89-765b-40f3-afa7-e6f2c2121015">
 </p>
 
-Figure 2. Benchmark of Diffusion-EPS. The entropy and energy profiles of dta_r2p_1 and dta_r2p_2 were calculated with EPS protocol using 1961 trajectories for each bond formation. Those of dta_r2p_1_gen and dta_r2p_2_gen were calculated using Diffusion-EPS.
+**Figure 2. Benchmark of Diffusion-EPS. The entropy and energy profiles of dta_r2p_1 and dta_r2p_2 were calculated with EPS protocol using 1961 trajectories for each bond formation. Those of dta_r2p_1_gen and dta_r2p_2_gen were calculated using Diffusion-EPS.
 
 ## Contact
 Please open an issue on GitHub or contact wook.shin@vanderbilt.edu if you encounter any issues or have concerns.
