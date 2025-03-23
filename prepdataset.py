@@ -60,9 +60,9 @@ def process_trajectory(tsfile, combined_xyz_file):
     return np.array([frame.flatten() * 10.0 for frame in trajectory.xyz])  # Convert nm to Å
 
 def main():
-    reaction_name = 'cp_r2p_1'
-    tsfile_name = 'cp_r2p_TS.pdb'
-    energy_index = 0
+    reaction_name = 'dta_r2p_1'
+    tsfile_name = 'dta_r2p_TS.pdb'
+    energy_index = -1
 
     reaction_dir = os.path.join('trajectory', reaction_name)
     dataset_dir = os.path.join('dataset', reaction_name)
