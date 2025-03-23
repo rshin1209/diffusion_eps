@@ -48,7 +48,6 @@ prepdataset.py extracts transition-state structure aligned cartesian coordinates
 
 reaction_name, tsfile_name, and energy_index must be specified in prepdataset.py.
 
-Example:
         def main():
           reaction_name = 'dta_r2p_1'
           tsfile_name = 'dta_r2p_TS.pdb'
